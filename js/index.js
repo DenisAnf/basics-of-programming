@@ -90,7 +90,28 @@ function getMonthByNumberOther(monthNumberOther) {
 
 
 /* Задание 5
-Напишите функцию convertRub(valueRub, currency), которая конвертирует рубли в другие валюты. Функция принимает число в рублях и валюту для перевода строкой ('USD, 'EUR', 'KZT', 'AED'). Функция возвращает результат конвертации. Для решения задачи можно применить конструкцию switch-case (just google it). */
+Напишите функцию convertRub(valueRub, currency), которая конвертирует рубли в другие валюты. Функция принимает число в рублях и валюту для перевода строкой ('USD', 'EUR', 'KZT', 'AED'). Функция возвращает результат конвертации. Для решения задачи можно применить конструкцию switch-case (just google it). */
+
+const RUB = 5000;
+const CONVERT_RATES = 'USD'
+let convertValue = convertRub(RUB, CONVERT_RATES);
+console.log(`${RUB} RUB = ${convertValue} ${CONVERT_RATES}`);
+
+function convertRub(valueRub, currency) {
+	const RATES = {
+		USD: 0.01251,
+		EUR: 0.011561,
+		KZT: 5.61,
+		AED: 0.045926
+	};
+
+	if (currency in RATES) {
+		let result = valueRub * RATES[currency];
+		return Math.round(result*100)/100;
+	} else {
+		return 'Неверно указано обозначение валюты, используйте USD, EUR, KZT или AED';
+	}
+}
 
 
 
