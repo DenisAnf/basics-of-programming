@@ -121,8 +121,12 @@ function convertRub(valueRub, currency) {
 /* Задание 1
 Напишите функцию printNumbers, которая выводит в консоль числа от -10 до 10. */
 
-for (let i = -10; i <= 10; i++) {
-	console.log(i);
+printNumbers();
+
+function printNumbers() {
+	for (let i = -10; i <= 10; i++) {
+		console.log(i);
+	}
 }
 
 
@@ -130,10 +134,10 @@ for (let i = -10; i <= 10; i++) {
 
 Напишите функцию printNumbersByRange(start, end), которая выводит в консоль числа в диапазоне. Диапазон задается начальным и конечным числом. Например, в результате вызова функции с параметрами -3 и 2 (printNumbersByRange(-3, 2) в консоль выводятся числа: -3, -2, -1, 0, 1, 2. */
 
-console.log(printNumbers(-3, 2));
+printNumbersByRange(-3, 2);
 
-function printNumbers(a, b) {
-	for (let i = a; i <= b; i++) {
+function printNumbersByRange(start, end) {
+	for (let i = start; i <= end; i++) {
 		console.log(i);
 	}
 }
@@ -143,11 +147,41 @@ function printNumbers(a, b) {
 
 Напишите функцию calculateNumbersSum(numbers), которая на вход принимает массив чисел и возвращает сумму этих чисел. Например, calculateNumbersSum([0, 1, 2, 4, 8] возвращает 15. */
 
+const numbers = [0, 1, 2, 4, 8];
+const numbersSum = calculateNumbersSum(numbers);
+console.log(numbersSum);
 
+function calculateNumbersSum(numbers) {
+	let sum = 0;
+	for (let i = 0; i < numbers.length; i++) {
+		sum += numbers[i];
+	}
+	return sum;
+}
 
 /* Задание 4
 
 Напишите функцию includes(numbers, number), которая на вход принимает массив чисел и число. Если число есть в массиве чисел, функция возвращает true, иначе - false. */
+
+const numbersOther = [0, 1, 2, 4, 8];
+const number = 7;
+const doIncludeNumber = includes(numbersOther, number);
+console.log(doIncludeNumber);
+
+function includes(numbers, number) {
+	for (let i = 0; i < numbers.length; i++) {
+		if (numbers[i] === number) {
+			return true;
+		}
+	}
+	return false;
+}
+
+/* другой вариант функции
+
+function includes(numbersOther, number) {
+  return numbersOther.includes(number);
+};*/
 
 
 
@@ -155,8 +189,55 @@ function printNumbers(a, b) {
 
 Напишите функцию createPerson(name, surname, age). Функция принимаем имя человека, фамилию и возраст. Функция возвращает объект с полями name, surname, age. */
 
+const person = createPerson('Денис', 'А', 35);
+console.log(person);
+
+function createPerson(name, surname, age) {
+	return {
+		name: name,
+		surname: surname,
+		age: age
+	};
+}
 
 
 /* Задание 6
 
 Напишите функцию findOldest(people). Функция принимает массив из объектов. Каждый объект создайте через функцию createPerson. Функция возвращает имя самого старшего человека. */
+
+
+const personOne = createPerson('Денис', 'А', 35);
+const personTwo = createPerson('Алексей', 'А', 30);
+const personThree = createPerson('Сергей', 'А', 35);
+const personFour = createPerson('Полина', 'А', 20);
+
+const people = [personOne, personTwo, personThree, personFour];
+
+const oldestPeopleName = findOldest(people);
+console.log(oldestPeopleName);
+
+function createPerson(name, surname, age) {
+	return {
+		name: name,
+		surname: surname,
+		age: age
+	};
+}
+
+function findOldest(people) {
+	let oldestAge = 0;
+	let oldestPeople = [];
+
+	for (let i = 0; i < people.length; i++) {
+		const currentPerson = people[i];
+
+		if (currentPerson.age > oldestAge) {
+			oldestAge = currentPerson.age;
+			oldestPeople = [currentPerson.name];
+		} else if (currentPerson.age === oldestAge) {
+			oldestPeople.push(currentPerson.name);
+		}
+	}
+
+  return oldestPeople;
+}
