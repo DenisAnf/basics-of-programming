@@ -228,16 +228,14 @@ function findOldest(people) {
 	let oldestAge = 0;
 	let oldestPeople = [];
 
-	for (let i = 0; i < people.length; i++) {
-		const currentPerson = people[i];
-
+	people.forEach(currentPerson => { //for (let i = 0; i < people.length; i++) {   const currentPerson = people[i];
 		if (currentPerson.age > oldestAge) {
 			oldestAge = currentPerson.age;
 			oldestPeople = [currentPerson.name];
 		} else if (currentPerson.age === oldestAge) {
 			oldestPeople.push(currentPerson.name);
 		}
-	}
+	});
 
-  return oldestPeople;
+	return oldestPeople;
 }
