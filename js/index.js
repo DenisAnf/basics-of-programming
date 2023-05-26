@@ -118,7 +118,6 @@ function convertRub(valueRub, currency) {
 		case 'AED': result = Math.round((valueRub * 0.045926) * 100) / 100;
 			break;
 		default: result = `Неверно указано обозначение валюты, вместо ${convertRates} используйте USD, EUR, KZT или AED`;
-			break;
 	}
 
 	return result;
