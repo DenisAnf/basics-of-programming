@@ -42,29 +42,17 @@ console.log(monthName);
 function getMonthByNumber(monthNumber) {
 	switch (monthNumber) {
 		case 1: return 'Январь';
-			break;
 		case 2: return 'Февраль';
-			break;
 		case 3: return 'Март';
-			break;
 		case 4: return 'Апрель';
-			break;
 		case 5: return 'Май';
-			break;
 		case 6: return 'Июнь';
-			break;
 		case 7: return 'Июль';
-			break;
 		case 8: return 'Август';
-			break;
 		case 9: return 'Сентябрь';
-			break;
 		case 10: return 'Октябрь';
-			break;
 		case 11: return 'Ноябрь';
-			break;
 		case 12: return 'Декабрь';
-			break;
 		default: return 'Данное число не соответствует месяцам';
 	}
 }
@@ -95,11 +83,11 @@ function getMonthByNumberOther(monthNumberOther) {
 Напишите функцию convertRub(valueRub, currency), которая конвертирует рубли в другие валюты. Функция принимает число в рублях и валюту для перевода строкой ('USD', 'EUR', 'KZT', 'AED'). Функция возвращает результат конвертации. Для решения задачи можно применить конструкцию switch-case (just google it). */
 
 const RUB = 5000;
-const CONVERT_RATES = 'USD'
-let convertValue = convertRub(RUB, CONVERT_RATES);
-console.log(`${RUB} RUB = ${convertValue} ${CONVERT_RATES}`);
+const convertRates = 'AED'
+let convertValue = convertRub(RUB, convertRates);
+console.log(`${RUB} RUB = ${convertValue} ${convertRates}`);
 
-function convertRub(valueRub, currency) {
+/*function convertRub(valueRub, currency) {
 	const RATES = {
 		USD: 0.01251,
 		EUR: 0.011561,
@@ -113,7 +101,32 @@ function convertRub(valueRub, currency) {
 	} else {
 		return 'Неверно указано обозначение валюты, используйте USD, EUR, KZT или AED';
 	}
+}*/
+
+
+// 2 вариант
+function convertRub(valueRub, currency) {
+	//let result;
+
+	switch (currency) {
+		case 'USD': result = Math.round((valueRub * 0.01251) * 100) / 100;
+			break;
+		case 'EUR': result = Math.round((valueRub * 0.011561) * 100) / 100;
+			break;
+		case 'KZT': result = Math.round((valueRub * 5.61) * 100) / 100;
+			break;
+		case 'AED': result = Math.round((valueRub * 0.045926) * 100) / 100;
+			break;
+		default: result = `Неверно указано обозначение валюты, вместо ${convertRates} используйте USD, EUR, KZT или AED`;
+			break;
+	}
+
+	return result;
 }
+
+
+
+
 
 
 // ВТОРОЙ ЧЕК
