@@ -13,6 +13,12 @@ console.log(multiple(10, 20));
 Напишите функцию buildDate(day, month, year), которая принимает на вход числами день недели, месяц и год. Функция возвращает дату строкой в формате dd/mm/yyyy. */
 
 function buildDate(day, month, year) {
+	if (day < 10) {
+		day = `0${day}`;
+	}
+	if (month < 10) {
+		month = `0${month}`;
+	}
 	return `${day}/${month}/${year}`;
 }
 console.log(buildDate(23, 5, 2023));
@@ -84,38 +90,46 @@ function getMonthByNumberOther(monthNumberOther) {
 
 const RUB = 5000;
 const convertRates = 'AED'
+
+const RUB_USD_EXCHANGE_RATE = 0.01251;
+const RUB_EUR_EXCHANGE_RATE = 0.011561;
+const RUB_KZT_EXCHANGE_RATE = 5.61;
+const RUB_AED_EXCHANGE_RATE = 0.045926;
+
+
 let convertValue = convertRub(RUB, convertRates);
 console.log(`${RUB} RUB = ${convertValue} ${convertRates}`);
 
-/*function convertRub(valueRub, currency) {
+/* function convertRub(valueRub, currency) {
 	const RATES = {
 		USD: 0.01251,
 		EUR: 0.011561,
 		KZT: 5.61,
-		AED: 0.045926
+		AED: 0.045926,
 	};
 
 	if (currency in RATES) {
 		let result = valueRub * RATES[currency];
 		return Math.round(result*100)/100;
 	} else {
-		return 'Неверно указано обозначение валюты, используйте USD, EUR, KZT или AED';
+		return 'Неверно указано обозначение валюты, вместо ${convertRates} используйте USD, EUR, KZT или AED';
 	}
 }*/
 
 
 // 2 вариант
+
 function convertRub(valueRub, currency) {
-	//let result;
+	let result;
 
 	switch (currency) {
-		case 'USD': result = Math.round((valueRub * 0.01251) * 100) / 100;
+		case 'USD': result = Math.round((valueRub * RUB_USD_EXCHANGE_RATE) * 100) / 100;
 			break;
-		case 'EUR': result = Math.round((valueRub * 0.011561) * 100) / 100;
+		case 'EUR': result = Math.round((valueRub * RUB_EUR_EXCHANGE_RATE) * 100) / 100;
 			break;
-		case 'KZT': result = Math.round((valueRub * 5.61) * 100) / 100;
+		case 'KZT': result = Math.round((valueRub * RUB_KZT_EXCHANGE_RATE) * 100) / 100;
 			break;
-		case 'AED': result = Math.round((valueRub * 0.045926) * 100) / 100;
+		case 'AED': result = Math.round((valueRub * RUB_AED_EXCHANGE_RATE) * 100) / 100;
 			break;
 		default: result = `Неверно указано обозначение валюты, вместо ${convertRates} используйте USD, EUR, KZT или AED`;
 	}
@@ -126,7 +140,7 @@ function convertRub(valueRub, currency) {
 
 
 
-
+//___________________________________________________________________________________________________________________________
 
 // ВТОРОЙ ЧЕК
 
